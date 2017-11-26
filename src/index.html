@@ -5,16 +5,14 @@
     <title></title>
   </head>
   <body>
-    <div id="test"></div>
+    <div id="app"></div>
   </body>
 
   <script>
-  import Vue from 'vue';
-  import Test from './test';
+  import Vue from 'vue'
+  import App from './App'
 
-  const app = new Vue(Test).$mount('#test');
-
-  app.text = "Electron Forge with Vue.js!";
-
+  const app = new Vue(App).$mount('#app')
+  app.greeting = 'Kiosk ready'
   </script>
 </html>
