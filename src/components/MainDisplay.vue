@@ -1,14 +1,17 @@
 <template>
+  <div class="tpl tpl-main-display">
     <date-time />
+    <weather />
   </div>
 </template>
 
 <script>
 import DateTime from './DateTime'
+import Weather from './Weather'
 
 export default {
   name: 'main-display',
-  components: {DateTime},
+  components: {DateTime, Weather},
   data () {
     return {
     }
@@ -17,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss">
-.tpl-display {
-  background: rgba(0,0,0, 0.2);
+.tpl-main-display {
+  padding: 4rem;
 }
 </style>

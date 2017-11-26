@@ -31,12 +31,17 @@ $color5: rgba(93, 87, 107, 1);
 
 html, body {
   color: $color1;
-  text-shadow: -1px -1px $color5;
+  // text-shadow: -1px -1px $color5;
   background-color: $color3;
   font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
- 
+ position: absolute;
+ height: 100%;
+ width: 100%;
+ overflow: visible;
 }
 </style>
