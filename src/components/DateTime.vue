@@ -2,7 +2,7 @@
   <div class="tpl tpl-date-time">
     <div class="time">
       {{displayTime}}
-      <small>{{amOrPm}}</small>
+      <small class="ampm">{{amOrPm}}</small>
       <small>{{timezone}}</small>
     </div>
     <div class="date"
@@ -64,13 +64,18 @@ export default {
 }
 
 .time, .date {
-  flex: 1;
+  flex: 2;
 }
 .time {
   font-size: 4rem;
-
+  flex: 1;
+  padding-right: 1rem;
   small {
     font-size: 2rem;
+  }
+  .ampm {
+    position: relative;
+    left: -1rem;
   }
 }
 
@@ -78,7 +83,7 @@ export default {
   display: flex;
   span {
     align-self: flex-end;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
   }
 }
 </style>
