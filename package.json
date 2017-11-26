@@ -47,6 +47,7 @@
     }
   },
   "dependencies": {
+    "dateformat": "^3.0.2",
     "electron-compile": "^6.4.2",
     "electron-devtools-installer": "^2.2.1",
     "electron-squirrel-startup": "^1.0.0",
