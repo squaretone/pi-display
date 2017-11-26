@@ -1,0 +1,70 @@
+<template>
+  <div class="tpl tpl-date-time">
+    <div class="time">
+      {{displayTime}}
+      <small>{{amOrPm}}</small>
+      <small>{{timezone}}</small>
+    </div>
+    <div class="date"
+      ><span>{{displayDate}}</span>
+    </div>
+  </div>
+</template>
+
+<script>
+import dateFormat from 'dateformat'
+
+export default {
+  name: 'date-time',
+  data () {
+    return {
+      time: null
+    }
+  },
+  computed: {
+    amOrPm () {
+      return dateFormat(this.time, 'TT')
+    },
+    timezone () {
+      return dateFormat(this.time, 'Z')
+    },
+    displayTime () {
+      return dateFormat(this.time, 'h:MM')
+    },
+    displayDate () {
+      return dateFormat(this.time, 'dddd, mmmm dS, yyyy')
+    }
+  },
+  mounted () {
+    this.time = new Date()
+  }
+}
+</script>
+
+<style scoped lang="scss">
+.tpl-date-time {
+
+  display: flex;
+  // align-content: stretch;
+  flex-flow: row wrap;
+}
+
+.time, .date {
+  flex: 1;
+}
+.time {
+  font-size: 4rem;
+
+  small {
+    font-size: 2rem;
+  }
+}
+
+.date {
+  display: flex;
+  span {
+    align-self: flex-end;
+    padding-bottom: 0.5rem;
+  }
+}
+</style>

@@ -1,6 +1,5 @@
 <template>
   <div class="tpl tpl-app">
-    <h2>{{greeting}}</h2>
     <main-display />
   </div>
 </template>

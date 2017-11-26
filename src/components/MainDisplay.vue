@@ -1,14 +1,14 @@
 <template>
-  <div class="tpl tpl-main-display">
-    <h2>Display</h2>
-
+    <date-time />
   </div>
 </template>
 
 <script>
+import DateTime from './DateTime'
 
 export default {
   name: 'main-display',
+  components: {DateTime},
   data () {
     return {
     }
