@@ -18,7 +18,8 @@ export default {
   name: 'date-time',
   data () {
     return {
-      time: null
+      time: null,
+      timer: null
     }
   },
   computed: {
@@ -35,8 +36,21 @@ export default {
       return dateFormat(this.time, 'dddd, mmmm dS, yyyy')
     }
   },
+  methods: {
+    autoUpdateTime () {
+      console.log('tick')
+      if (this.timer) {
+        clearInterval(this.timer)
+      }
+      this.timer = setInterval(this.autoUpdateTime, 1000)
+      this.updateTime()
+    },
+    updateTime () {
+      this.time = new Date()
+    }
+  },
   mounted () {
-    this.time = new Date()
+    this.autoUpdateTime()
   }
 }
 </script>
