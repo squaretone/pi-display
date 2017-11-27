@@ -47,15 +47,18 @@
     }
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "dateformat": "^3.0.2",
     "electron-compile": "^6.4.2",
     "electron-devtools-installer": "^2.2.1",
     "electron-squirrel-startup": "^1.0.0",
     "vue": "^2.5.8",
-    "vueify": "^9.4.1"
+    "vueify": "^9.4.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "electron-forge": "^4.1.5",
