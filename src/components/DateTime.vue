@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     autoUpdateTime () {
-      console.log('tick')
       if (this.timer) {
         clearInterval(this.timer)
       }
@@ -68,7 +67,8 @@ export default {
   flex: 2;
 }
 .time {
-  font-size: 4rem;
+  white-space: nowrap;
+  font-size: 6rem;
   flex: 1;
   padding-right: 1rem;
   small {
@@ -84,7 +84,7 @@ export default {
   display: flex;
   span {
     align-self: flex-end;
-    padding-bottom: 0.75rem;
+    padding-bottom: 1.125rem;
   }
 }
 </style>

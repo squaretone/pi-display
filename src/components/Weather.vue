@@ -1,14 +1,11 @@
 <template>
   <div class="tpl tpl-weather">
-    <button @click.prevent="loadData">
-      <span v-if="!loading">load</span>
-      <span v-if="loading">loading...</span>
-
-      {{zipcode}}
-    </button>
-    <div>{{temp}}&#8457</div>
-    <div>{{humidity}}&#37; humidity</div>
-    <div>{{airPressure}} Hg</div>
+    <div v-if="loading" class="loading-wrapper">loading current conditions...</div>
+    <div v-if="!loading" class="current-conditions">
+      <div>{{temp}}&#8457</div>
+      <div>{{humidity}}&#37; humidity</div>
+      <div>{{airPressure}} Hg</div>
+    </div>
   </div>
 </template>
 
@@ -20,33 +17,54 @@ export default {
   data () {
     return {
       loading: false,
-      temp: '10',
-      humidity: '15',
-      airPressure: '20.99'
+      latestObservation: {}
     }
   },
   computed: {
     ...mapGetters([
       'zipcode'
-    ])
+    ]),
+    airPressure () {
+      let pressureObj = this.latestObservation.barometricPressure
+      if (pressureObj) {
+        return pressureObj.value
+      }
+    },
+    humidity () {
+      let humidObj = this.latestObservation.relativeHumidity
+      if (humidObj) {
+        return humidObj.value
+      }
+    },
+    temp () {
+      let tempObj = this.latestObservation.temperature
+      if (tempObj) {
+        return tempObj.value
+      }
+    }
   },
   methods: {
     ...mapActions([
-      'demo', 'updateConditions'
+      'updateConditions'
     ]),
     loadData () {
       this.loading = true
-      this.demo({
+      this.updateConditions({
         cb: this.loadDataHandler
       })
     },
     loadDataHandler (err, data) {
-      this.loading = false
       console.log(err, data)
+      this.loading = false
+      if (!err) {
+        this.latestObservation = data
+      } else {
+        console.error(err)
+      }
     }
   },
   mounted () {
-    
+    this.loadData()
   }
 }
 </script>

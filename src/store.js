@@ -3,11 +3,23 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 Vue.use(Vuex)
-
-const getWeather = (zipcode, cb) => {
-  axios.get('https:')
+// https://api.weather.gov/stations/KMLE/observations?limit=3
+const getWeather = (stationID, cb) => {
+  let observationPath = `https://api.weather.gov/stations/${stationID}/observations`
+  let params = {
+    limit: 3
+  }
+  axios.get(observationPath, {params: params})
     .then((response) => {
-      cb(null, response)
+      let result = response.data
+      let features = result.features
+
+      if (!features || features.length < 1) {
+        return cb(`No observations returned for station ${stationID}`)
+      } else {
+        let firstObservation = features[0].properties
+        cb(null, firstObservation)
+      }
     })
     .catch((err) => {
       cb(err)
@@ -20,7 +32,7 @@ const store = new Vuex.Store({
     zipcode: '68949',
     location: null,
     geolocation: null,
-    stationID: null
+    stationID: 'KMLE'
   },
   mutations: {
     increment (state) { 
@@ -42,17 +54,12 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    demo ({commit, state}, options) {
-      console.log('DEMO: ', options)
-      getWeather(state.zipcode, (err, data) => {
-        if (options && options.cb) options.cb(err, data)
+    updateConditions ({state}, options) {
+      getWeather(state.stationID, (err, result) => {
+        if (options && options.cb) {
+          options.cb(err, result)
+        }
       })
-    },
-    updateConditions (store, options) {
-      console.log('updating conditions...')
-      if (options && options.cb) {
-        options.cb(null, {})
-      }
     }
   }
 })

@@ -29,11 +29,11 @@ export default {
   },
   methods: {
     ...mapActions([
-      'demo'
+      'demo', 'updateConditions'
     ]),
     loadData () {
       this.loading = true
-      this.demo({
+      this.updateConditions({
         cb: this.loadDataHandler
       })
     },
@@ -51,6 +51,5 @@ export default {
 <style scoped lang="scss">
 .tpl-settings {
   padding: 1rem;
-  border: 1px dotted gray;
 }
 </style>
