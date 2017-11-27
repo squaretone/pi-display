@@ -3,7 +3,7 @@
     <div class="time">
       {{displayTime}}
       <small class="ampm">{{amOrPm}}</small>
-      <small>{{timezone}}</small>
+      <!-- <small>{{timezone}}</small> -->
     </div>
     <div class="date"
       ><span>{{displayDate}}</span>
@@ -71,12 +71,13 @@ export default {
   font-size: 6rem;
   flex: 1;
   padding-right: 1rem;
+  text-shadow: -1px -1px rgba(0,0,0, 0.2), 1px 1px rgba(255,255,255, 0.2);
   small {
     font-size: 2rem;
   }
   .ampm {
     position: relative;
-    left: -1rem;
+    left: -1.5rem;
   }
 }
 
