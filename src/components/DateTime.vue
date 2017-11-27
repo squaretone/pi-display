@@ -39,9 +39,9 @@ export default {
   methods: {
     autoUpdateTime () {
       if (this.timer) {
-        clearInterval(this.timer)
+        clearTimeout(this.timer)
       }
-      this.timer = setInterval(this.autoUpdateTime, 1000)
+      this.timer = setTimeout(this.autoUpdateTime, 1000)
       this.updateTime()
     },
     updateTime () {

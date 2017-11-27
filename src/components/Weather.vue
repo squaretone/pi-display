@@ -17,6 +17,7 @@ export default {
   data () {
     return {
       loading: false,
+      loadInterval: null,
       latestObservation: {}
     }
   },
@@ -54,6 +55,10 @@ export default {
       'updateConditions'
     ]),
     loadData () {
+      if (this.loadInterval) {
+        clearTimeout(this.loadInterval)
+      }
+      this.loadInterval = setTimeout(this.loadData, 900000)
       this.loading = true
       this.updateConditions({
         cb: this.loadDataHandler
