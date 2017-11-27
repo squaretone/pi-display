@@ -47,7 +47,8 @@ export default {
     },
     updateTime () {
       this.time = new Date()
-    }
+    },
+
   },
   mounted () {
     this.autoUpdateTime()

@@ -11,8 +11,19 @@
   <script>
   import Vue from 'vue'
   import App from './App'
+  import store from './store'
+  
+  Vue.config.productionTip = false
 
-  const app = new Vue(App).$mount('#app')
-  app.greeting = 'Kiosk ready'
+  const app = new Vue({
+    el: '#app',
+    store,
+    render: h => h(App),
+    data: {
+      greeting: 'Kios ready'
+    }
+  })
+
+  // app.greeting = 'Kiosk ready'
   </script>
 </html>

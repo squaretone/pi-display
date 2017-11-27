@@ -1,14 +1,12 @@
 <template>
-  <div class="tpl tpl-weather">
+  <div class="tpl tpl-settings">
     <button @click.prevent="loadData">
       <span v-if="!loading">load</span>
       <span v-if="loading">loading...</span>
-
-      {{zipcode}}
     </button>
-    <div>{{temp}}&#8457</div>
-    <div>{{humidity}}&#37; humidity</div>
-    <div>{{airPressure}} Hg</div>
+    <div>stationID: {{stationID}}</div>
+    <div>zipcode: {{zipcode}}</div>
+    <div>geolocation: {{geolocation}}</div>
   </div>
 </template>
 
@@ -16,23 +14,22 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'weather',
+  name: 'settings',
   data () {
     return {
-      loading: false,
-      temp: '10',
-      humidity: '15',
-      airPressure: '20.99'
+      loading: false
     }
   },
   computed: {
     ...mapGetters([
-      'zipcode'
+      'zipcode',
+      'stationID',
+      'geolocation'
     ])
   },
   methods: {
     ...mapActions([
-      'demo', 'updateConditions'
+      'demo'
     ]),
     loadData () {
       this.loading = true
@@ -52,14 +49,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.tpl-weather {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  font-size: 2rem;
-
-  &> {
-    margin-bottom: 0.5rem;
-  }
+.tpl-settings {
+  padding: 1rem;
+  border: 1px dotted gray;
 }
 </style>
