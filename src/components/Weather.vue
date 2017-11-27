@@ -4,7 +4,7 @@
     <div v-if="!loading" class="current-conditions">
       <div>{{temp}}&#8457</div>
       <div>{{humidity}}&#37; humidity</div>
-      <div>{{airPressure}} Hg</div>
+      <div>{{airPressure}} hg</div>
     </div>
   </div>
 </template>
@@ -27,19 +27,25 @@ export default {
     airPressure () {
       let pressureObj = this.latestObservation.barometricPressure
       if (pressureObj) {
-        return pressureObj.value
+        // Convert pascals to mercury inches
+        let hg = Math.round(0.0002953 * pressureObj.value)
+        return `${hg}`
       }
     },
     humidity () {
       let humidObj = this.latestObservation.relativeHumidity
       if (humidObj) {
-        return humidObj.value
+        // Convert pascals to mercury inches
+        let humidity = Math.round(humidObj.value)
+        return `${humidity}`
       }
     },
     temp () {
       let tempObj = this.latestObservation.temperature
       if (tempObj) {
-        return tempObj.value
+        // fahrenheit to celsius
+        let f = Math.round(1.8 * tempObj.value + 32)
+        return `${f}`
       }
     }
   },
