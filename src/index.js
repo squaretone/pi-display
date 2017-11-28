@@ -26,6 +26,8 @@ const createWindow = async () => {
     mainWindow.webContents.openDevTools();
   }
 
+  mainWindow.setFullScreen(true)
+  
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
