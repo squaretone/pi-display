@@ -17,7 +17,7 @@ const getWeather = (stationID, cb) => {
       if (!features || features.length < 1) {
         return cb(`No observations returned for station ${stationID}`)
       } else {
-        let firstObservation = features[5].properties
+        let firstObservation = features[0].properties
         cb(null, firstObservation)
       }
     })
