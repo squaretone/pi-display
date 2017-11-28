@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const getWeather = (stationID, cb) => {
   let observationPath = `https://api.weather.gov/stations/${stationID}/observations`
   let params = {
-    limit: 3
+    limit: 7
   }
   axios.get(observationPath, {params: params})
     .then((response) => {
@@ -17,7 +17,7 @@ const getWeather = (stationID, cb) => {
       if (!features || features.length < 1) {
         return cb(`No observations returned for station ${stationID}`)
       } else {
-        let firstObservation = features[0].properties
+        let firstObservation = features[5].properties
         cb(null, firstObservation)
       }
     })

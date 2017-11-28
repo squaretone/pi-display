@@ -5,6 +5,8 @@
       <div>{{temp}}&#8457</div>
       <div>{{humidity}}&#37; humidity</div>
       <div>{{airPressure}} hg</div>
+      <div>Wind Direction: {{windDirection}}</div>
+      <div>Wind Speed: {{windSpeed}} mph</div>
     </div>
   </div>
 </template>
@@ -25,6 +27,25 @@ export default {
     ...mapGetters([
       'zipcode'
     ]),
+    windDirection () {
+      let dir
+      if (this.latestObservation && this.latestObservation.windDirection) {
+        let windObj = this.latestObservation.windDirection
+        let directions = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW']
+        let dirDeg = windObj.value
+        let dirIndex = dirDeg % 16
+        dir = directions[dirIndex]
+      }
+      return dir
+    },
+    windSpeed () {
+      let speed
+      if (this.latestObservation && this.latestObservation.windSpeed) {
+        speed = Math.round(this.latestObservation.windSpeed.value * 2.2369)
+      }
+
+      return speed
+    },
     airPressure () {
       let pressureObj = this.latestObservation.barometricPressure
       if (pressureObj) {
