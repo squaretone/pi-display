@@ -52,6 +52,7 @@
     "electron-compile": "^6.4.2",
     "electron-devtools-installer": "^2.2.1",
     "electron-squirrel-startup": "^1.0.0",
+    "mousetrap": "^1.6.1",
     "vue": "^2.5.8",
     "vueify": "^9.4.1",
     "vuex": "^3.0.1"
