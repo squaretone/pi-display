@@ -5,16 +5,24 @@
 </template>
 
 <script>
+import { ipcRenderer } from 'electron'
 import vueify from 'vueify'
 import MainDisplay from './components/MainDisplay'
+import Mousetrap from 'mousetrap'
 
 export default {
   name: 'app',
   components: {MainDisplay},
   data () {
-    return {
-       greeting: ''
-    }
+    return {}
+  },
+  mounted () {
+    ipcRenderer.on('toggle-fullscreen', (event, isFullScreen) => {
+      console.log('Fullscreen toggle', isFullScreen)
+    })
+    Mousetrap.bind('esc', function() { 
+      ipcRenderer.send('toggle-fullscreen')
+    }, 'keyup')
   }
 }
 </script>

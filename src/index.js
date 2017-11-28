@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
 
@@ -27,7 +27,7 @@ const createWindow = async () => {
   }
 
   mainWindow.setFullScreen(true)
-  
+
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
@@ -59,5 +59,18 @@ app.on('activate', () => {
   }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
+// Listen for full screen event to toggle
+ipcMain.on('toggle-fullscreen', (event, forceBool) => {
+  console.log('forceBool', forceBool)
+  if (mainWindow) {
+    let setFullScreenTo
+    if (typeof forceBool === "undefined") {
+      setFullScreenTo = !mainWindow.isFullScreen()
+    } else {
+      setFullScreenTo = forceBool 
+    }
+    
+    mainWindow.setFullScreen(setFullScreenTo)
+    event.sender.send('toggle-fullscreen', setFullScreenTo)
+  }
+})
